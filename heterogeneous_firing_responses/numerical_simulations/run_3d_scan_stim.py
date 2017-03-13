@@ -2,7 +2,7 @@ import numpy as np
 import sys, pathlib
 sys.path.append(str(pathlib.Path(__file__).resolve().parents[2]))
 from heterogeneous_firing_responses.numerical_simulations.models import models, get_model_params
-from heterogeneous_firing_responses.numerical_simulations.simulations import single_experiment, params_variations_calc
+from heterogeneous_firing_responses.numerical_simulations.simulations import sin gle_experiment, params_variations_calc
 from heterogeneous_firing_responses.analysis.measures import measuring_subthre_dynamics
 
 

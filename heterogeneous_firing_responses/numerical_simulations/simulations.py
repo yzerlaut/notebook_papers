@@ -6,7 +6,7 @@ sys.path.append(str(pathlib.Path(__file__).resolve().parents[1]))
 from numerical_simulations.models import get_model_params
 # import numba
 """
-the numba implementation doesn't work anymore with python 3, no idea why, but it works without...
+the numba implementation doesn't work anymore with python 3, no idea why, but it works without, it's just a bit slower...
 """
 
 ####################################################################
@@ -21,7 +21,7 @@ def generate_conductance_shotnoise(freq, t, N, Q, Tsyn, g0=0, seed=0):
     g0 is the starting value of the shotnoise
     """
     if freq==0:
-        # print "problem, 0 frequency !!! ---> freq=1e-9 !!"
+        # print("problem, 0 frequency !!! ---> freq=1e-9 !!")
         freq=1e-9
     upper_number_of_events = max([int(3*freq*t[-1]*N),1]) # at least 1 event
     np.random.seed(seed=seed)
@@ -159,7 +159,6 @@ def single_experiment(t, I0, Gs, f, Q, Ts, muV,\
         I= full_I_traces
 
     params = get_model_params(MODEL, params)
-    print(*pseq_iAdExp(params))
     
     v, theta, spikes = iAdExp_sim(t, I, Gs, muV, *pseq_iAdExp(params))
 
