@@ -1,3 +1,6 @@
 [submodule "data_analysis"]
 	path = data_analysis
 	url = git@bitbucket.org:yzerlaut/data_analysis.git
+[submodule "neural_network_dynamics"]
+	path = neural_network_dynamics
+	url = git@bitbucket.org:yzerlaut/neural_network_dynamics.git
