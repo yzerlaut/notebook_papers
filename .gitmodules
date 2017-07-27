@@ -4,3 +4,6 @@
 [submodule "neural_network_dynamics"]
 	path = neural_network_dynamics
 	url = git@bitbucket.org:yzerlaut/neural_network_dynamics.git
+[submodule "graphs"]
+	path = graphs
+	url = git@bitbucket.org:yzerlaut/graphs.git
