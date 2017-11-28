@@ -207,11 +207,74 @@ def conductances(SET_OF_DATA, tdiscard=200,
     
     return fig
 
+def conductances_ratio(SET_OF_DATA, tdiscard=200,
+                       NVm=4, pop_key='RecExc',
+                       bg_colors=[Blue, Orange], LABELS=['SAS', 'BS']):
+    """
+    analyze conductances
+    """
+    
+    fig, ax = plt.subplots(1, figsize=(0.7,1.2))
+    plt.subplots_adjust(left=.33, bottom=.2, wspace=1)
+
+    for k, data in enumerate(SET_OF_DATA):
+        t = np.arange(int(data['tstop']/data['dt']))*data['dt']
+        cond = t>tdiscard
+        G = []
+        for i, key, color, label in zip(range(NVm), ['GSYNe', 'GSYNi'],
+                                        [Green, Red], ['$\\nu_e$', '$\\nu_i$']):
+        
+            mean = np.mean([data[key+'_'+str(pop_key)][j].mean() for j in range(NVm)])
+            G.append(mean)
+        ax.bar([k], [G[1]/G[0]], color=bg_colors[k], width=.8)
+
+    set_plot(ax, ['left'], yticks=[0,1,2],
+             ylabel='$G_i$/$G_e$', xticks=[])
+    
+    return fig
+
+def currents(SET_OF_DATA, tdiscard=200,
+             NVm=4, pop_key='RecExc',
+             bg_colors=[Blue, Orange], LABELS=['SAS', 'BS']):
+    """
+    analyze currents
+    """
+    
+    fig, ax = plt.subplots(1, figsize=(3.*len(SET_OF_DATA),2))
+    plt.subplots_adjust(left=.33, bottom=.2, wspace=2.)
+            
+    for k, data in enumerate(SET_OF_DATA):
+        t = np.arange(int(data['tstop']/data['dt']))*data['dt']
+        cond = t>tdiscard
+        for i, key in zip(range(NVm), ['ISYNe', 'ISYNi']):
+            # current means
+            mean = np.mean([np.abs(data[key+'_'+str(pop_key)][j]).mean() for j in range(NVm)])
+            std = np.std([np.abs(data[key+'_'+str(pop_key)][j]).mean() for j in range(NVm)])
+            ax.bar([i+5*k], [mean], yerr=[std],
+                      width=.8, color=bg_colors[k], bottom=10)
+            # current fluctuations
+            mean = np.mean([np.abs(data[key+'_'+str(pop_key)][j]).std() for j in range(NVm)])
+            std = np.std([np.abs(data[key+'_'+str(pop_key)][j]).std() for j in range(NVm)])
+            ax.bar([i+2+5*k], [mean], yerr=[std],
+                   width=.8, color=bg_colors[k], bottom=10)
+
+    ax.set_yscale('log')
+            
+    set_plot(ax, ['left'],
+             ylabel='$\| I_{syn} \|$ (pA)', yticks=[10, 100, 1000],
+             xticks=np.arange(9), xticks_labels=['$\mu_{e}$', '$\mu_{i}$',
+                                                 '$\sigma_{e}$', '$\sigma_{i}$',
+                                                 '',
+                                                 '$\mu_{e}$', '$\mu_{i}$',
+                                                 '$\sigma_{e}$', '$\sigma_{i}$'])
+    
+    return fig
+
 def IE_ratio(SET_OF_DATA, tdiscard=200,
              NVm=4, pop_key='RecExc',
              bg_colors=[Blue, Orange], LABELS=['SAS', 'BS']):
     """
-    analyze conductances
+    analyze current ratio
     """
     
     fig, AX = plt.subplots(1, figsize=(1.5,2))
