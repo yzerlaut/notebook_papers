@@ -35,7 +35,6 @@ def plot_ntwk_sim_output(time_array, rate_array, rate_exc, rate_inh,\
     plt.annotate(str(bar_ms)+'ms', (z[0]+bar_ms, Ne))
     
     set_plot(plt.gca(), ['left'], ylabel='Neuron index', xticks=[], yticks=[7700, 8000])
-    FIGS[-1].savefig('/Users/yzerlaut/Desktop/1.svg')
 
     FIGS.append(plt.figure(figsize=(4,3)))
     ax1 = plt.subplot2grid((3,1), (0,0), rowspan=2)
