@@ -122,7 +122,7 @@ if __name__=='__main__':
                                    zoom_conditions=args.zoom, bar_ms=args.bar_ms,\
                                    raster_number=args.raster_number)
 
-    plt.show()
+
 
 
 
