@@ -1,6 +1,6 @@
 # notebook_papers
 
-I provide here and Interactive Python notebook of our research papers. Visit my research webpage for details and comments on the implementation https://yzerlaut.wordpress.com/
+I provide here Interactive Python notebooks of our research papers. Visit my research webpage for details and comments on the implementation https://yzerlaut.wordpress.com/
 
 - **Modeling mesoscopic cortical dynamics using a mean-field model of conductance-based networks of adaptive exponential integrate-and-fire neurons.** Zerlaut Y., Chemla S., Chavane F. and Destexhe A. _Journal of Computational Neuroscience_ (2017). https://doi.org/10.1007/s10827-017-0668-2  
 
