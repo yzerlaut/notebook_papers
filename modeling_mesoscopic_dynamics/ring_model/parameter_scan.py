@@ -7,7 +7,6 @@ import sys, pathlib, os
 sys.path.append(str(pathlib.Path(__file__).resolve().parents[2]))
 from graphs.my_graph import *
 sys.path.append(str(pathlib.Path(__file__).resolve().parents[1]))
-# from experimental_data.dataset import get_dataset
 from ring_model.compare_to_model import get_data, get_residual
 from ring_model.model import Euler_method_for_ring_model
 
@@ -58,8 +57,8 @@ def create_grid_scan_bash_script(args):
 def zip_data(args):
     zf = zipfile.ZipFile(args.zip_filename, mode='w')
     # writing the parameters
-    zf.write('../ring_model/data/scan_data.npy')
-    VC, SE, ECR, ICR, TAU2, TAU1, FILENAMES = np.load('../ring_model/data/scan_data.npy')
+    zf.write('data/scan_data.npy')
+    VC, SE, ECR, ICR, TAU2, TAU1, FILENAMES = np.load('data/scan_data.npy')
     for fn in FILENAMES:
         zf.write(fn)
     zf.close()
@@ -67,9 +66,9 @@ def zip_data(args):
 def unzip_data(args):
     zf = zipfile.ZipFile(args.zip_filename, mode='r')
     # writing the parameters
-    data = zf.read('../ring_model/data/scan_data.npy')
-    with open('../ring_model/data/scan_data.npy', 'wb') as f: f.write(data)
-    VC, SE, ECR, ICR, TAU2, TAU1, FILENAMES = np.load('../ring_model/data/scan_data.npy')
+    data = zf.read('data/scan_data.npy')
+    with open('data/scan_data.npy', 'wb') as f: f.write(data)
+    VC, SE, ECR, ICR, TAU2, TAU1, FILENAMES = np.load('data/scan_data.npy')
     for fn in FILENAMES:
         data = zf.read(fn)
         with open(fn, 'wb') as f: f.write(data)
@@ -77,22 +76,19 @@ def unzip_data(args):
     
 def analyze_scan(args):
     
-    VC, SE, ECR, ICR, TAU2, TAU1, FILENAMES = np.load('../ring_model/data/scan_data.npy')
-    print(TAU1[0], FILENAMES[0])
+    VC, SE, ECR, ICR, TAU2, TAU1, FILENAMES = np.load('data/scan_data.npy')
     
     Residuals = []
     vcFull, seFull, ecrFull, icrFull, t2Full, t1Full = [], [], [], [], [], []
     
     ## loading data for time residual
-    new_time, space, new_data = get_data(args.data_index,
-                                         smoothing=np.ones((1, 4))/4**2,
+    new_time, space, new_data = get_data(args.vsd_data_filename,
                                          t0=args.t0, t1=args.t1)
 
     for vc, se, ecr, icr, t2, t1 in itertools.product(VC, SE, ECR, ICR, TAU2, TAU1):
         fn = to_filename(vc, se, ecr, icr, t2, t1)
         try:
-            res = get_residual(args,
-                               new_time, space, new_data,
+            res = get_residual(new_time, space, new_data,
                                model_normalization_factor=FACTOR_FOR_MUVN_NORM,
                                fn=fn)
             Residuals.append(res)
@@ -104,8 +100,8 @@ def analyze_scan(args):
             icrFull.append(icr)
         except (IOError, OSError):
             print('missing', fn)
-        
-    np.save('../ring_model/data/residuals_data_'+str(args.data_index)+'.npy',
+
+    np.save('data/residuals_data.npy',
             [np.array(Residuals),
              np.array(vcFull), np.array(seFull),
              np.array(ecrFull), np.array(icrFull),
@@ -113,7 +109,7 @@ def analyze_scan(args):
 
 def fix_missing(args):
     
-    VC, SE, ECR, ICR, TAU2, TAU1, FILENAMES = np.load('../ring_model/data/scan_data.npy')
+    VC, SE, ECR, ICR, TAU2, TAU1, FILENAMES = np.load('data/scan_data.npy')
     f = open('bash_parameter_scan.sh', 'w')
     n = 0
     for vc, se, ecr, icr, t2, t1 in itertools.product(VC, SE, ECR, ICR, TAU2, TAU1):
@@ -139,7 +135,7 @@ def plot_analysis(args):
     Residuals,\
         vcFull, seFull, ecrFull, icrFull,\
         t2Full, t1Full = np.load(\
-            '../ring_model/data/residuals_data_'+str(args.data_index)+'.npy')
+            'data/residuals_data.npy')
 
     i0 = np.argmin(Residuals)
     Residuals/=Residuals[i0] # normalizing
@@ -160,12 +156,12 @@ def plot_analysis(args):
         else:
             set_plot(ax, xlabel=label, yticks=[1, 5, 10, 20], yticks_labels=[])
 
-    new_time, space, new_data = get_data(args.data_index,
+    new_time, space, new_data = get_data(args.vsd_data_filename,
                                          Nsmooth=args.Nsmooth,
                                          t0=args.t0, t1=args.t1)
 
     if args.force:
-        fn = '../ring_model/data/model_data_'+str(args.data_index)+'.npy'
+        fn = 'data/model_data.npy'
         t, X, Fe_aff, Fe, Fi, muVn =\
                                  Euler_method_for_ring_model(\
                                                              'RS-cell', 'FS-cell',\
@@ -181,20 +177,19 @@ def plot_analysis(args):
                                                             'Tau1':t1Full[i0], 'Tau2':t2Full[i0]})
         np.save(fn, [args, t, X, Fe_aff, Fe, Fi, muVn])
     else:
-        _, _, _, _, _, _, FILENAMES = np.load('../ring_model/data/scan_data.npy')
+        _, _, _, _, _, _, FILENAMES = np.load('data/scan_data.npy')
         fn = FILENAMES[i0]
     
-    res = get_residual(args,
-                       new_time, space, new_data,
+    res = get_residual(new_time, space, new_data,
                        Nsmooth=args.Nsmooth,
                        fn=fn, with_plot=True)
-    show()
+    
 
 def get_minimum_params(args):
     Residuals,\
         vcFull, seFull, ecrFull, icrFull,\
         t2Full, t1Full = np.load(\
-            '../ring_model/data/residuals_data_'+str(args.data_index)+'.npy')
+            'data/residuals_data.npy')
 
     i0 = np.argmin(Residuals)
     Residuals/=Residuals[i0] # normalizing
@@ -282,7 +277,7 @@ def full_plot(args):
     set_plot(ax5, xticks=[10, 50, 100],
              xlabel='$T_{stim}$ (ms)', ylabel='$\\tau_2$ (ms)', yticks=[40, 120, 200])
 
-    show()
+    
     
 if __name__=='__main__':
     import argparse
@@ -299,11 +294,9 @@ if __name__=='__main__':
     parser.add_argument("--Tau1", nargs=2, type=float, default=[5e-3, 50e-3])
     parser.add_argument("--Tau2", nargs=2, type=float, default=[50e-3, 200e-3])
     parser.add_argument("--N", type=int, default=2)
-    parser.add_argument("--zip_filename", '-f', type=str,
-                        default='../ring_model/data/data.zip')
+    parser.add_argument("--zip_filename", '-f', type=str, default='data/data.zip')
     # data
-    parser.add_argument("--data_index", '-df', type=int,
-                        default=7)
+    parser.add_argument("--vsd_data_filename", default='data/VSD_data_session_example.mat')
     parser.add_argument("--t0", type=float, default=-100.)
     parser.add_argument("--t1", type=float, default=300.)
     parser.add_argument("--X_discretization", type=int, default=30) # PUT 100 for HD
