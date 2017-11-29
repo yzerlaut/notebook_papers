@@ -96,11 +96,4 @@ if __name__=='__main__':
                     '$l_{inh}$='+str(int(args.inh_connect_extent))+'mm\n'+\
                     '$l_{stim}$='+str(round(args.sX))+'mm',
                     (0.5, 0.5), xycoords='axes fraction', fontsize=13)
-        fig3.savefig('/Users/yzerlaut/Desktop/temp.svg')
-        
-        if args.SAVE:
-            for i in range(1,4):
-                # exec("fig"+str(i)+".savefig('fig"+str(i)+".png', dpi=300)")
-                exec("fig"+str(i)+".savefig('fig"+str(i)+".svg')")
-        else:
-            plt.show()
+        plt.show()

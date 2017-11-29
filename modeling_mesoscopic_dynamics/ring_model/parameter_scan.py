@@ -2,24 +2,23 @@ import numpy as np
 import matplotlib.pylab as plt
 import itertools
 # everything stored within a zip file
-import zipfile, sys, os
-sys.path.append("../experimental_data")
-# from compare_to_model import *
-sys.path.append("../../")
-from graphs.my_graph import set_plot, show
-from graphs.plot_export import put_list_of_figs_to_svg_fig
-from dataset import get_dataset
-from compare_to_model import get_data, get_residual
-from model import Euler_method_for_ring_model
+import zipfile
+import sys, pathlib, os
+sys.path.append(str(pathlib.Path(__file__).resolve().parents[2]))
+from graphs.my_graph import *
+sys.path.append(str(pathlib.Path(__file__).resolve().parents[1]))
+# from experimental_data.dataset import get_dataset
+from ring_model.compare_to_model import get_data, get_residual
+from ring_model.model import Euler_method_for_ring_model
 
 FACTOR_FOR_MUVN_NORM = abs((-54.+58.)/58.) # ~6% corresponding to a ~5mV wrt to rest level
 
 def to_filename(vc, se, ecr, icr, t2, t1):
-    return '../ring_model/data/scan_'+str(vc)+'_'+str(se)+'_'+str(ecr)+'_'+str(icr)+'_'+str(t2)+'_'+str(t1)+'.npy'
+    return 'data/scan_'+str(vc)+'_'+str(se)+'_'+str(ecr)+'_'+str(icr)+'_'+str(t2)+'_'+str(t1)+'.npy'
 
 def cmd(vc, se, ecr, icr, t2, t1):
     fn = to_filename(vc, se, ecr, icr, t2, t1)
-    return fn, 'python single_trial.py '+\
+    return fn, 'python modeling_mesoscopic_dynamics/ring_model/single_trial.py '+\
         ' --conduction_velocity_mm_s '+str(vc)+\
         ' --sX '+str(se)+\
         ' --exc_connect_extent '+str(ecr)+\
@@ -36,7 +35,7 @@ def create_grid_scan_bash_script(args):
     TAU2 = np.linspace(args.Tau2[0], args.Tau2[1], args.N)
     TAU1 = np.linspace(args.Tau1[0], args.Tau1[1], args.N)
 
-    f = open('bash_parameter_scan.sh', 'w')
+    f = open('modeling_mesoscopic_dynamics/ring_model/bash_parameter_scan.sh', 'w')
     FILENAMES = []
     n = 0 # sim counter
     for vc, se, ecr, icr, t2, t1 in itertools.product(VC, SE, ECR, ICR, TAU2, TAU1):
@@ -52,7 +51,7 @@ def create_grid_scan_bash_script(args):
             print('existing datafile')
         FILENAMES.append(fn)
     f.close()
-    np.save('../ring_model/data/scan_data.npy', [VC, SE, ECR, ICR, TAU2, TAU1, np.array(FILENAMES)])
+    np.save('data/scan_data.npy', [VC, SE, ECR, ICR, TAU2, TAU1, np.array(FILENAMES)])
     print(n, 'simulations to be performed')
 
 
@@ -283,8 +282,6 @@ def full_plot(args):
     set_plot(ax5, xticks=[10, 50, 100],
              xlabel='$T_{stim}$ (ms)', ylabel='$\\tau_2$ (ms)', yticks=[40, 120, 200])
 
-    put_list_of_figs_to_svg_fig([fig1, fig2, fig3, fig4, fig5],
-                                fig_name="/Users/yzerlaut/Desktop/temp.svg")
     show()
     
 if __name__=='__main__':
