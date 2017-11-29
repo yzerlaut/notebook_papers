@@ -1,6 +1,8 @@
 # notebook_papers
 
-I provide here Interactive Python notebooks of our research papers. Visit my research webpage for details and comments on the implementation https://yzerlaut.wordpress.com/
+I provide here IPython notebooks of our research papers. Visit my research webpage for details and comments on the implementation https://yzerlaut.wordpress.com/. Feel free to contact me for details or bugs in the code (or use github's issue tracker).
+
+## Publication list with implementation links
 
 - **Modeling mesoscopic cortical dynamics using a mean-field model of conductance-based networks of adaptive exponential integrate-and-fire neurons.** Zerlaut Y., Chemla S., Chavane F. and Destexhe A. _Journal of Computational Neuroscience_ (2017). https://doi.org/10.1007/s10827-017-0668-2  
 
@@ -8,10 +10,7 @@ I provide here Interactive Python notebooks of our research papers. Visit my res
 
 - **Enhanced Responsiveness and Low-Level Awareness in Stochastic Network States** Zerlaut Y. and Destexhe A. _Neuron_ (2017) http://dx.doi.org/10.1016/j.neuron.2017.04.001
 
-  The implementation combines the results of the J. Neurosci. 2015 paper and 
-  https://github.com/yzerlaut/notebook_papers/blob/master/Modeling_Mesoscopic_Dynamics_JCNS_2017.ipynb
-  the J. Comp. Neurosci. 2017 paper
-  https://github.com/yzerlaut/notebook_papers/blob/master/Heterogeneous_Firing_responses_JPhysiol_2016.ipynb
+  The implementation combines those of the ![J. Neurosci. 2015 paper's implementation](https://github.com/yzerlaut/notebook_papers/blob/master/Modeling_Mesoscopic_Dynamics_JCNS_2017.ipynb) and  the ![J. Comp. Neurosci. 2017 paper's implementation](https://github.com/yzerlaut/notebook_papers/blob/master/Heterogeneous_Firing_responses_JPhysiol_2016.ipynb)
   
 - **Heterogeneous firing responses predict diverse couplings to presynaptic activity in mice layer V pyramidal neurons** Zerlaut Y. and Destexhe A. _PLoS Computational Biology_ (2017) https://doi.org/10.1371/journal.pcbi.1005452
 
