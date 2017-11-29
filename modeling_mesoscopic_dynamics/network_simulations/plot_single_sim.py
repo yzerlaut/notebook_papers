@@ -83,9 +83,6 @@ def plot_ntwk_sim_output(time_array, rate_array, rate_exc, rate_inh,\
     set_plot(AX, ['left'], ylabel='$\\nu$ (Hz)', xticks=[], num_yticks=3)
     FIGS.append(fig)
 
-    # print('excitatory rate: ', rate_exc[len(rate_exc)/2:].mean(), 'Hz')
-    # print('inhibitory rate: ', rate_inh[len(rate_exc)/2:].mean(), 'Hz')
-    
     return AX, FIGS
 
 if __name__=='__main__':

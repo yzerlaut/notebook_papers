@@ -97,4 +97,3 @@ if __name__=='__main__':
                                        zoom_conditions=[args.t0-5*args.T1, args.tstop],\
                                        raster_number=400)
 
-        plt.show()

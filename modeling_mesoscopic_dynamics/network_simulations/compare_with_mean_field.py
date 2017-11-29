@@ -81,6 +81,7 @@ def plot_ntwk_sim_output(time_array, rate_array, rate_exc, rate_inh,\
     set_plot(AX1[0], ['left'], xticks=[], ylim=[0,11], yticks=[0, 5, 10], yticks_labels=['-65', '-60', '-55'], ylabel='mean (mV)')
     set_plot(AX2[0], ['left'], xticks=[], ylim=[0,5], yticks=[0, 2, 4], ylabel='std. dev. (mV)')
 
+
     
     ### EXCITATORY CONDUCTANCE
     MEAN_GE, STD_GE, KYRT_GE = [], [], []
@@ -276,9 +277,6 @@ def plot_ntwk_sim_output_for_waveform(args,\
     set_plot(AX, ['left'], ylabel='$\\nu$ (Hz)', xticks=[], num_yticks=3)
     FIGS.append(fig)
 
-    print('excitatory rate: ', rate_exc[len(rate_exc)/2:].mean(), 'Hz')
-    print('inhibitory rate: ', rate_inh[len(rate_exc)/2:].mean(), 'Hz')
-    print(sfe[0], sfe[-1])
     return FIGS
     
 
