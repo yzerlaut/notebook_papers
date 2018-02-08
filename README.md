@@ -1,6 +1,6 @@
 # notebook_papers
 
-I provide here IPython notebooks of our research papers. Feel free to contact me for details or problems in running the code (or use github's issue tracker).
+I provide here ![Jupyter notebooks](http://jupyter.org/) reproducing the results of our research papers. Feel free to contact me for details or problems in running the code (or use github's issue tracker).
 
 ## Publication list with implementation links
 
