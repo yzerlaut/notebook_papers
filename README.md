@@ -22,4 +22,4 @@ I provide here IPython notebooks of our research papers. Feel free to contact me
   
 - **Gain Modulation of Synaptic Inputs by Network State in Auditory Cortex In Vivo** Reig R., Zerlaut Y., Vergara R., Destexhe A. and Sanchez-Vives M.V. _The Journal of Neuroscience_ (2015) https://doi.org/10.1523/JNEUROSCI.2004-14.2015 
 
-  https://github.com/yzerlaut/notebook_papers/blob/master/Heterogeneous_Firing_responses_JPhysiol_2016.ipynb
+  https://github.com/yzerlaut/notebook_papers/blob/master/Gain_Modulation_JNeurosci_2015.ipynb
