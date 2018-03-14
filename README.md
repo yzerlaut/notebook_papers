@@ -4,7 +4,7 @@ I provide here Jupyter notebooks (see http://jupyter.org/) reproducing the resul
 
 ## Publication list with implementation links
 
-- **Modeling mesoscopic cortical dynamics using a mean-field model of conductance-based networks of adaptive exponential integrate-and-fire neurons.** Zerlaut Y., Chemla S., Chavane F. and Destexhe A. _Journal of Computational Neuroscience_ (2017). https://doi.org/10.1007/s10827-017-0668-2  
+- **Modeling mesoscopic cortical dynamics using a mean-field model of conductance-based networks of adaptive exponential integrate-and-fire neurons.** Zerlaut Y., Chemla S., Chavane F. and Destexhe A. _Journal of Computational Neuroscience_ (2018). https://doi.org/10.1007/s10827-017-0668-2  
 
    https://github.com/yzerlaut/notebook_papers/blob/master/Modeling_Mesoscopic_Dynamics_JCNS_2017.ipynb
 
