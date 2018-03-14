@@ -1,6 +1,6 @@
 # notebook_papers
 
-I provide here ![Jupyter notebooks](http://jupyter.org/) reproducing the results of our research papers. Feel free to contact me for details or problems in running the code (or use github's issue tracker).
+I provide here Jupyter notebooks (see http://jupyter.org/) reproducing the results of our research papers. Feel free to contact me for details or problems in running the code (or use github's issue tracker).
 
 ## Publication list with implementation links
 
@@ -10,7 +10,7 @@ I provide here ![Jupyter notebooks](http://jupyter.org/) reproducing the results
 
 - **Enhanced Responsiveness and Low-Level Awareness in Stochastic Network States** Zerlaut Y. and Destexhe A. _Neuron_ (2017) http://dx.doi.org/10.1016/j.neuron.2017.04.001
 
-  The implementation combines those of the ![J. Neurosci. 2015 paper's implementation](https://github.com/yzerlaut/notebook_papers/blob/master/Modeling_Mesoscopic_Dynamics_JCNS_2017.ipynb) and  the ![J. Comp. Neurosci. 2017 paper's implementation](https://github.com/yzerlaut/notebook_papers/blob/master/Heterogeneous_Firing_responses_JPhysiol_2016.ipynb)
+  The implementation combines those of the [J. Neurosci. 2015 paper's implementation](https://github.com/yzerlaut/notebook_papers/blob/master/Modeling_Mesoscopic_Dynamics_JCNS_2017.ipynb) and  the [J. Comp. Neurosci. 2017 paper's implementation](https://github.com/yzerlaut/notebook_papers/blob/master/Heterogeneous_Firing_responses_JPhysiol_2016.ipynb)
   
 - **Heterogeneous firing responses predict diverse couplings to presynaptic activity in mice layer V pyramidal neurons** Zerlaut Y. and Destexhe A. _PLoS Computational Biology_ (2017) https://doi.org/10.1371/journal.pcbi.1005452
 
