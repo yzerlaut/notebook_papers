@@ -1,8 +1,6 @@
-# notebook_papers
-
 I provide here Jupyter notebooks (see http://jupyter.org/) reproducing the results of our research papers. Feel free to contact me for details or problems in running the code (or use github's issue tracker).
 
-## Publication list with implementation links
+# Publication list with implementation links:
 
 - **Modeling mesoscopic cortical dynamics using a mean-field model of conductance-based networks of adaptive exponential integrate-and-fire neurons.** Zerlaut Y., Chemla S., Chavane F. and Destexhe A. _Journal of Computational Neuroscience_ (2018). https://doi.org/10.1007/s10827-017-0668-2  
 
