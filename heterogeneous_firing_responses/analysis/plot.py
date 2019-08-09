@@ -27,7 +27,7 @@ def make_3d_fig(P, Fout, s_Fout, muV, sV, Tv_ratio,\
 
     # 3d view - Fout
     fig1 = plt.figure(figsize=(7,4))
-    plt.subplots_adjust(left=.3, bottom=.3, right=.6)
+    plt.subplots_adjust(left=.1, bottom=.2, right=.78, top=0.95)
     ax = plt.subplot(111, projection='3d')
     ax.set_title(cell_id)
     ax.view_init(elev=20., azim=210.)
@@ -36,7 +36,7 @@ def make_3d_fig(P, Fout, s_Fout, muV, sV, Tv_ratio,\
     ax.set_zlabel('\n\n $\\nu_\mathrm{out}$ (Hz)')
 
     # the colorbar to index the autocorrelation
-    ax2 = plt.axes([.84, .1, .02, .8])
+    ax2 = plt.axes([.82, .1, .02, .8])
     Tv_levels = np.unique(Tv_ratio)
     # levels no more than 5
     mymap = mpl.colors.LinearSegmentedColormap.from_list(\
@@ -90,9 +90,6 @@ def make_3d_fig(P, Fout, s_Fout, muV, sV, Tv_ratio,\
     ax.yaxis.set_major_locator( MaxNLocator(nbins = 4) )
     ax.zaxis.set_major_locator( MaxNLocator(nbins = 4,prune='lower'))
     
-    fig1.tight_layout()
-    
-
     ax.set_zlim([0., max([1,Fout.max()])])
 
     ax.xaxis.set_major_locator( MaxNLocator(nbins = 4,prune='both') )

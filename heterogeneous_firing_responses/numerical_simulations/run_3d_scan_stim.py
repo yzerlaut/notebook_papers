@@ -81,7 +81,7 @@ def make_simulation_for_model(MODEL, args, return_output=False,\
                         measuring_subthre_dynamics(v, spikes, dt,\
                                    Tm0=params['Cm']/params['Gl'])
 
-    data_path = '../data/'+MODEL+'_'+args.SUFFIX_NAME+'.npz'
+    data_path = 'data/'+MODEL+'_'+args.SUFFIX_NAME+'.npz'
 
 
     D = dict(muV=1e3*muV.flatten(), sV=1e3*sV.flatten(),\
@@ -136,8 +136,8 @@ if __name__=='__main__':
         def make_sim(MODEL):
             print('by default we vary Tm !!')
             make_simulation_for_model(MODEL, args, sampling=args.sampling)
-            make_simulation_for_model(MODEL+'__minus', args, sampling=args.sampling)
-            make_simulation_for_model(MODEL+'__plus', args, sampling=args.sampling)
+            make_simulation_for_model(MODEL+'_minus', args, sampling=args.sampling)
+            make_simulation_for_model(MODEL+'_plus', args, sampling=args.sampling)
     else:
         def make_sim(MODEL):
             make_simulation_for_model(MODEL, args, sampling=args.sampling)
