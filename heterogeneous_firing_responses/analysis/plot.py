@@ -11,9 +11,9 @@ except ModuleNotFoundError:
     from template_and_fitting import erfc_func, fitting_Vthre_then_Fout,\
         final_threshold_func, print_reduce_parameters
     
-def make_3d_and_2d_figs(P, Fout, s_Fout, muV, sV, Tv_ratio,\
-                        muGn, Gl, Cm, El, cell_id, vthre_lim=None,\
-                        FONTSIZE=18):
+def make_3d_fig(P, Fout, s_Fout, muV, sV, Tv_ratio,\
+                muGn, Gl, Cm, El, cell_id, vthre_lim=None,\
+                FONTSIZE=18):
     
     font = {'size'   : FONTSIZE}
     mpl.rc('font', **font)
@@ -128,10 +128,10 @@ if __name__=='__main__':
     ##### PLOTTING #####
     # see plotting_tools.py
     # need non SI units (electrophy units) !!!
-    FIG = make_3d_and_2d_figs(P,\
-            data['Fout'], data['s_Fout'], data['muV'],\
-            data['sV'], data['TvN'], data['muGn'],\
-            data['Gl'], data['Cm'], data['El'], args.NEURON)
+    FIG = make_3d_fig(P,\
+                      data['Fout'], data['s_Fout'], data['muV'],\
+                      data['sV'], data['TvN'], data['muGn'],\
+                      data['Gl'], data['Cm'], data['El'], args.NEURON)
 
 
     plt.show()
